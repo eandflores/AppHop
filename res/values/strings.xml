@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hop</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_position">PositionActivity</string>
+    <string name="title_activity_administrador">AdministradorActivity</string>
+    <string name="title_activity_solicitud">SolicitudActivity</string>
+    <string name="title_activity_visitante">VisitanteActivity</string>
+    <string name="title_activity_visitante_add">VisitanteAddActivity</string>
+
+</resources>
