@@ -20,9 +20,11 @@ import org.json.JSONObject;
 
 import BO.Local;
 import BO.Producto;
+import BO.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,188 +36,8 @@ public class SearchActivity extends Activity {
 
 	private ImageButton btn1;
 	private AutoCompleteTextView tvBusqueda;
-
-	public void cargarProductos(String response) {
-
-		ArrayList<String> listadoProductos = new ArrayList<String>();
-
-		try {
-			JSONArray json = new JSONArray(response);
-
-			for (int i = 0; i < json.length(); i++) {
-				Producto producto = new Producto(json.getJSONObject(i).getInt(
-						"id"), json.getJSONObject(i).getString("nombre"), json
-						.getJSONObject(i).getInt("categoria_producto_id"), json
-						.getJSONObject(i).getInt("user_id"), json
-						.getJSONObject(i).getString("created"), json
-						.getJSONObject(i).getString("modified"));
-
-				listadoProductos.add(producto.toString());
-			}
-
-			ArrayAdapter<String> productosAdapter = new ArrayAdapter<String>(
-					this, android.R.layout.select_dialog_item, listadoProductos);
-			tvBusqueda.setAdapter(productosAdapter);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void EnviarOnClick(View v) {
-		Thread hilo = new Thread() {
-			@Override
-			public void run() {
-				try {
-
-					String res;
-
-					res = enviarPost(tvBusqueda.getText().toString());
-
-					final JSONObject json = new JSONObject(res);
-
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								if (!json.getString("mensaje").equals("EXITO")) {
-									Toast.makeText(SearchActivity.this,
-											json.getString("mensaje"),
-											Toast.LENGTH_LONG).show();
-								} else {
-									JSONArray localesJSON = json
-											.getJSONArray("locales");
-									ArrayList<Local> listadoLocales = new ArrayList<Local>();
-
-									Intent intent = new Intent(
-											SearchActivity.this,
-											PositionActivity.class);
-
-									for (int i = 0; i < localesJSON.length(); i++) {
-										Local local = new Local(
-												localesJSON.getJSONObject(i)
-														.getInt("id"),
-												localesJSON.getJSONObject(i)
-														.getString("nombre"),
-												localesJSON.getJSONObject(i)
-														.getString("calle"),
-												localesJSON.getJSONObject(i)
-														.getInt("numero"),
-												localesJSON
-														.getJSONObject(i)
-														.getString(
-																"telefono_fijo"),
-												localesJSON
-														.getJSONObject(i)
-														.getString(
-																"telefono_movil"),
-												localesJSON.getJSONObject(i)
-														.getString("email"),
-												localesJSON.getJSONObject(i)
-														.getString("sitio_web"),
-												localesJSON.getJSONObject(i)
-														.getBoolean("estado"),
-												localesJSON.getJSONObject(i)
-														.getString("img"),
-												localesJSON
-														.getJSONObject(i)
-														.getInt("categoria_local_id"),
-												localesJSON.getJSONObject(i)
-														.getInt("user_id"),
-												localesJSON.getJSONObject(i)
-														.getInt("region_id"),
-												localesJSON.getJSONObject(i)
-														.getInt("comuna_id"),
-												localesJSON.getJSONObject(i)
-														.getString("created"),
-												localesJSON.getJSONObject(i)
-														.getString("modified"));
-
-										listadoLocales.add(local);
-									}
-
-									intent.putExtra("Locales", listadoLocales);
-									startActivity(intent);
-								}
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		};
-
-		hilo.start();
-	}
-
-	public String enviarPost(String nombre) {
-		// TODO Auto-generated method stub
-
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpContext localContext = new BasicHttpContext();
-		HttpPost httpPost = new HttpPost(
-				"http://192.168.1.126/Hop/Locals/locales");
-		HttpResponse response = null;
-		String resultado = null;
-
-		try {
-			List<NameValuePair> params = new ArrayList<NameValuePair>(12);
-			params.add(new BasicNameValuePair("nombre", nombre));
-
-			httpPost.setEntity(new UrlEncodedFormEntity(params));
-			response = httpClient.execute(httpPost, localContext);
-			HttpEntity entity = response.getEntity();
-			resultado = EntityUtils.toString(entity, "UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return resultado;
-	}
-
-	public String getProductos() {
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpContext localContext = new BasicHttpContext();
-		HttpPost httpPost = new HttpPost(
-				"http://192.168.1.126/Hop/Productos/productos");
-		HttpResponse response = null;
-		String resultado = null;
-
-		try {
-			response = httpClient.execute(httpPost, localContext);
-			HttpEntity entity = response.getEntity();
-			resultado = EntityUtils.toString(entity, "UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return resultado;
-	}
-
-	private void iniciarComponentes() {
-		// TODO Auto-generated method stub
-
-		btn1 = (ImageButton) findViewById(R.id.imageButton1);
-		tvBusqueda = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
-
-	}
-
-	private void iniciarEventos() {
-		// TODO Auto-generated method stub
-		btn1.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				EnviarOnClick(v);
-			}
-		});
-	}
-
+	private User usuario;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -240,6 +62,86 @@ public class SearchActivity extends Activity {
 
 		iniciarComponentes();
 		iniciarEventos();
+	}
+	
+	private void iniciarComponentes() {
+		// TODO Auto-generated method stub
+
+		btn1 = (ImageButton) findViewById(R.id.imageButton1);
+		tvBusqueda = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+		
+		Intent i = getIntent();
+		usuario = (User) i.getSerializableExtra("Usuario");
+		
+	}
+
+	private void iniciarEventos() {
+		// TODO Auto-generated method stub
+		btn1.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				EnviarOnClick(v);
+			}
+		});
+	}
+	
+	public void EnviarOnClick(View v) {
+		Intent intent = new Intent(
+				SearchActivity.this,
+				PositionActivity.class);
+		
+		intent.putExtra("nombreProducto",tvBusqueda.getText().toString());
+		intent.putExtra("Usuario",usuario);
+		startActivity(intent);
+		
+	}
+	
+	public void cargarProductos(String response) {
+
+		ArrayList<String> listadoProductos = new ArrayList<String>();
+
+		try {
+			JSONArray json = new JSONArray(response);
+
+			for (int i = 0; i < json.length(); i++) {
+				Producto producto = new Producto(json.getJSONObject(i).getInt(
+						"id"), json.getJSONObject(i).getString("nombre"), json
+						.getJSONObject(i).getInt("subcategoria_producto_id"), json
+						.getJSONObject(i).getInt("user_id"), json
+						.getJSONObject(i).getString("created"), json
+						.getJSONObject(i).getString("modified"));
+
+				listadoProductos.add(producto.toString());
+			}
+
+			ArrayAdapter<String> productosAdapter = new ArrayAdapter<String>(
+					this, android.R.layout.select_dialog_item, listadoProductos);
+			tvBusqueda.setAdapter(productosAdapter);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getProductos() {
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpContext localContext = new BasicHttpContext();
+		HttpPost httpPost = new HttpPost(
+				"http://"+getString(R.string.IP)+"/Hop/Productos/productos");
+		HttpResponse response = null;
+		String resultado = null;
+
+		try {
+			response = httpClient.execute(httpPost, localContext);
+			HttpEntity entity = response.getEntity();
+			resultado = EntityUtils.toString(entity, "UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return resultado;
 	}
 
 	@Override

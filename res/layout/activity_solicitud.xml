@@ -6,14 +6,14 @@
     android:gravity="top|center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context=".SolicitudActivity" >
 
     <LinearLayout
         android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -22,50 +22,11 @@
             android:src="@drawable/mc_hop" />
 	
    </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Solicitud astrox" />
-
-    <CheckBox
-        android:id="@+id/CheckBox01"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Solicitud edgardo007" />
-
-    <CheckBox
-        android:id="@+id/CheckBox02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Solicitud Libreria Librito" />
-
-    <CheckBox
-        android:id="@+id/CheckBox03"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Solicitud Boutique Lucía" />
-
-    <LinearLayout
-        android:paddingTop="@dimen/activity_vertical_margin"
+   
+    <ListView
+        android:id="@+id/lvSolicitudes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Validar" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Rechazar" />
-
-    </LinearLayout>
+    </ListView>
 
 </LinearLayout>

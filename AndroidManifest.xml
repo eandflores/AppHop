@@ -5,26 +5,21 @@
     android:versionName="1.0" >
 
     <permission
-	    android:name="org.example.ejemplogooglemaps.permission.MAPS_RECEIVE"
-	    android:protectionLevel="signature"/>
-	
-	<uses-permission
-	    android:name="org.example.ejemplogooglemaps.permission.MAPS_RECEIVE"/>
-	
-	<uses-permission
-	    android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-	
-	
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-	
-	<uses-feature
+        android:name="org.example.ejemplogooglemaps.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="org.example.ejemplogooglemaps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-	
+
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
@@ -34,14 +29,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
         <meta-data
-		    android:name="com.google.android.gms.version"
-		   	android:value="@integer/google_play_services_version"/>
-		
-		<meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBe1pAi4frS4pR7Ad_ESNzsbq8DGR9VN6I"/>
+            android:value="AIzaSyAQMW7hEXW5ZVsjmhtjAEHhSHLZ6Kh5h7M" />
 
         <activity
             android:name="com.hop.MainActivity"
@@ -75,6 +68,46 @@
         <activity
             android:name="com.hop.VisitanteAddActivity"
             android:label="@string/title_activity_visitante_add" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditActivity"
+            android:label="@string/title_activity_user_edit" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditNombresActivity"
+            android:label="@string/title_activity_user_edit_nombres" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditPasswordActivity"
+            android:label="@string/title_activity_user_edit_password" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditEmailActivity"
+            android:label="@string/title_activity_user_edit_email" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditTelefonosActivity"
+            android:label="@string/title_activity_user_edit_telefonos" >
+        </activity>
+        <activity
+            android:name="com.hop.UserEditDireccionActivity"
+            android:label="@string/title_activity_user_edit_direccion" >
+        </activity>
+        <activity
+            android:name="com.hop.SolicitudEditActivity"
+            android:label="@string/title_activity_solicitud_edit" >
+        </activity>
+        <activity
+            android:name="com.hop.UserViewActivity"
+            android:label="@string/title_activity_user_view" >
+        </activity>
+        <activity
+            android:name="com.hop.LocalViewActivity"
+            android:label="@string/title_activity_local_view" >
+        </activity>
+        <activity
+            android:name="com.hop.OfertasActivity"
+            android:label="@string/title_activity_ofertas" >
         </activity>
     </application>
 

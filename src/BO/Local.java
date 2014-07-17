@@ -15,7 +15,6 @@ public class Local implements Serializable {
 	String img;
 	int categoria_local_id;
 	int user_id;
-	int region_id;
 	int comuna_id;
 	String created;
 	String modified;
@@ -23,7 +22,7 @@ public class Local implements Serializable {
 	public Local(int id, String nombre, String calle, int numero,
 			String telefono_fijo, String telefono_movil, String email,
 			String sitio_web, boolean estado, String img,
-			int categoria_local_id, int user_id, int region_id, int comuna_id,
+			int categoria_local_id, int user_id, int comuna_id,
 			String created, String modified) {
 
 		this.id = id;
@@ -38,7 +37,6 @@ public class Local implements Serializable {
 		this.img = img;
 		this.categoria_local_id = categoria_local_id;
 		this.user_id = user_id;
-		this.region_id = region_id;
 		this.comuna_id = comuna_id;
 		this.created = created;
 		this.modified = modified;
@@ -46,6 +44,82 @@ public class Local implements Serializable {
 
 	public int getId() {
 		return this.id;
+	}
+	
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	public String getCalle() {
+		return this.calle;
+	}
+	
+	public int getNumero() {
+		return this.numero;
+	}
+	
+	public String getTelefonoFijo() {
+		return this.telefono_fijo;
+	}
+	
+	public String getTelefonoMovil() {
+		return this.telefono_movil;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public String getSitioWeb() {
+		return this.sitio_web;
+	}
+	
+	public boolean getEstado() {
+		return this.estado;
+	}
+	
+	public String getImg() {
+		return this.img;
+	}
+	
+	public int getCategoria() {
+		return this.categoria_local_id;
+	}
+	
+	public int getUser() {
+		return this.user_id;
+	}
+	
+	public int getComuna() {
+		return this.comuna_id;
+	}
+	
+	public String getCreated() {
+		return this.created;
+	}
+	
+	public String getModified() {
+		return this.modified;
+	}
+	
+	public String getDireccion() {
+		return this.calle+" "+this.numero;
+	}
+	
+	public String getTelefono() {
+		String telefonos = "";
+		
+		if(this.telefono_fijo != null && this.telefono_movil != null){
+			telefonos = this.telefono_fijo+" "+this.telefono_movil;
+		}
+		else if(this.telefono_fijo != null){
+			telefonos = this.telefono_fijo;
+		}
+		else{
+			telefonos = this.telefono_movil;
+		}
+		
+		return telefonos;
 	}
 
 	@Override

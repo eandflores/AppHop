@@ -1,9 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+    <item android:id="@+id/menu_vista"
+          android:orderInCategory="100"
+          android:showAsAction="never"
+          android:title="Cambiar Vista"/>
+
+    <item android:id="@+id/menu_mover"
+          android:orderInCategory="100"
+          android:showAsAction="never"
+          android:title="Centrar"/>
+
+    <item android:id="@+id/menu_3d"
+          android:orderInCategory="100"
+          android:showAsAction="never"
+          android:title="Vista 3D"/>
+
+    <item android:id="@+id/menu_posicion"
+          android:orderInCategory="100"
+          android:showAsAction="never"
+          android:title="Posición"/>
+    <item android:id="@+id/menu_como_llegar"
+          android:orderInCategory="100"
+          android:showAsAction="never"
+          android:title="Como Llegar"/>
 
 </menu>

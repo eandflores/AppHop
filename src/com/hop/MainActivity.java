@@ -21,6 +21,7 @@ import BO.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -50,9 +51,10 @@ public class MainActivity extends Activity {
 		btn3 = (Button) findViewById(R.id.button3);
 		username = (EditText) findViewById(R.id.et_username);
 		password = (EditText) findViewById(R.id.et_password);
+		
+		username.setText("administrador");
+		password.setText("administrador");
 
-		username.setText("edgar");
-		password.setText("kkk");
 	}
 
 	private void iniciarEventos() {
@@ -115,38 +117,18 @@ public class MainActivity extends Activity {
 											UserActivity.class);
 
 									User usuario = new User(
-											usuarioJSON.getInt("id"),
-											usuarioJSON.getString("rut"),
-											usuarioJSON.getString("nombre"),
-											usuarioJSON
-													.getString("apellido_paterno"),
-											usuarioJSON
-													.getString("apellido_materno"),
-											usuarioJSON
-													.getString("fecha_nacimiento"),
-											usuarioJSON.getString("email"),
-											usuarioJSON.getString("username"),
-											usuarioJSON.getString("password"),
-											usuarioJSON
-													.getString("telefono_fijo"),
-											usuarioJSON
-													.getString("telefono_movil"),
-											usuarioJSON.getString("poblacion"),
-											usuarioJSON.getString("calle"),
-											usuarioJSON.getInt("numero"),
-											usuarioJSON
-													.getInt("cant_votos_positivos"),
-											usuarioJSON
-													.getInt("cant_votos_negativos"),
-											usuarioJSON.getBoolean("estado"),
-											usuarioJSON.getString("img"),
-											usuarioJSON.getInt("rol_id"),
-											usuarioJSON.getInt("region_id"),
-											usuarioJSON.getInt("comuna_id"),
-											usuarioJSON.getString("local_id"),
-											usuarioJSON.getString("created"),
-											usuarioJSON.getString("modified"));
-
+										usuarioJSON.getInt("id"),usuarioJSON.getString("rut"),
+										usuarioJSON.getString("nombre"),usuarioJSON.getString("apellido_paterno"),
+										usuarioJSON.getString("apellido_materno"),usuarioJSON.getString("fecha_nacimiento"),
+										usuarioJSON.getString("email"),usuarioJSON.getString("username"),
+										usuarioJSON.getString("password"),usuarioJSON.getString("telefono_fijo"),
+										usuarioJSON.getString("telefono_movil"),usuarioJSON.getString("poblacion"),
+										usuarioJSON.getString("calle"),usuarioJSON.getString("numero"),
+										usuarioJSON.getBoolean("estado"),usuarioJSON.getString("img"),
+										usuarioJSON.getInt("rol_id"),
+										usuarioJSON.getInt("comuna_id"),
+										usuarioJSON.getString("created"),usuarioJSON.getString("modified"));
+									
 									i.putExtra("Usuario", usuario);
 									startActivity(i);
 								}
@@ -171,7 +153,7 @@ public class MainActivity extends Activity {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		HttpPost httpPost = new HttpPost(
-				"http://192.168.1.126/Hop/users/loginAndroid");
+				"http://"+getString(R.string.IP)+"/Hop/users/loginAndroid");
 		HttpResponse response = null;
 		String resultado = null;
 

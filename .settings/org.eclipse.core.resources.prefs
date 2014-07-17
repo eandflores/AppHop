@@ -1,2 +1,14 @@
 eclipse.preferences.version=1
+encoding//src/BO/Oferta.java=UTF-8
+encoding//src/com/hop/MainActivity.java=UTF-8
+encoding//src/com/hop/PositionActivity.java=UTF-8
+encoding//src/com/hop/SolicitudActivity.java=UTF-8
+encoding//src/com/hop/SolicitudEditActivity.java=UTF-8
 encoding//src/com/hop/UserActivity.java=UTF-8
+encoding//src/com/hop/UserEditDireccionActivity.java=UTF-8
+encoding//src/com/hop/UserEditEmailActivity.java=UTF-8
+encoding//src/com/hop/UserEditNombresActivity.java=UTF-8
+encoding//src/com/hop/UserEditPasswordActivity.java=UTF-8
+encoding//src/com/hop/UserEditTelefonosActivity.java=UTF-8
+encoding//src/com/hop/UserViewActivity.java=UTF-8
+encoding//src/com/hop/VisitanteAddActivity.java=UTF-8
