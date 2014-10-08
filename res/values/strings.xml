@@ -20,6 +20,6 @@
     <string name="title_activity_user_view">Hop</string>
     <string name="title_activity_local_view">Hop</string>
     <string name="title_activity_ofertas">Hop</string>
-    <string name="IP">192.168.1.126</string>
+    <string name="IP">localhost</string>
 
 </resources>
